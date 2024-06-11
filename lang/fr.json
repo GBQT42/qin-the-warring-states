@@ -1,0 +1,54 @@
+{
+  "RWBY": {
+    "Ability": {
+      "For": { "long": "Force", "abbr": "FOR" },
+      "Dex": { "long": "Dextérité", "abbr": "DEX" },
+      "Cor": { "long": "Corps", "abbr": "COR" },
+      "Per": { "long": "Perception", "abbr": "PER" },
+      "Esp": { "long": "Esprit", "abbr": "ESP" },
+      "Dis": { "long": "Discipline", "abbr": "DIS" }
+    },
+    "SheetLabels": {
+      "Actor": "rwby Actor Sheet",
+      "Item": "rwby Item Sheet"
+    },
+    "Item": {
+      "Spell": {
+        "SpellLVL": "Level {level} Spells",
+        "AddLVL": "Add LVL {level}"
+      }
+    },
+    "Effect": {
+      "Source": "Source",
+      "Toggle": "Toggle Effect",
+      "Temporary": "Temporary Effects",
+      "Passive": "Passive Effects",
+      "Inactive": "Inactive Effects"
+    }
+  },
+
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "npc": "NPC"
+    },
+    "Item": {
+      "item": "Item",
+      "feature": "Feature",
+      "spell": "Spell",
+      "skill": "Skill",
+      "semblance": "Semblance",
+      "auraFeature": "Technique d'Aura"
+    }
+  },
+
+  "QIN": {
+    "aspects": {
+      "Wood":"Bois",
+      "Metal":"Métal",
+      "Water":"Eau",
+      "Fire":"Feu",
+      "Earth":"Terre"
+    }
+  }
+}
