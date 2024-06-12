@@ -6,19 +6,19 @@
 export const preloadHandlebarsTemplates = async function () {
   return loadTemplates([
     // Actor partials.
-    'systems/rwby-unofficial-tabletop-remix/templates/actor/parts/actor-features.hbs',
-    'systems/rwby-unofficial-tabletop-remix/templates/actor/parts/actor-items.hbs',
-    'systems/rwby-unofficial-tabletop-remix/templates/actor/parts/actor-spells.hbs',
-    'systems/rwby-unofficial-tabletop-remix/templates/actor/parts/actor-effects.hbs',
-    'systems/rwby-unofficial-tabletop-remix/templates/actor/parts/actor-skills.hbs',
-    'systems/rwby-unofficial-tabletop-remix/templates/actor/parts/actor-semblance.hbs',
-    'systems/rwby-unofficial-tabletop-remix/templates/actor/parts/actor-aura.hbs',
-    'systems/rwby-unofficial-tabletop-remix/templates/actor/parts/actor-dust.hbs',
-    "systems/rwby-unofficial-tabletop-remix/templates/actor/parts/actor-combat.hbs",
+    'systems/qin-the-warring-states/templates/actor/parts/actor-features.hbs',
+    'systems/qin-the-warring-states/templates/actor/parts/actor-items.hbs',
+    'systems/qin-the-warring-states/templates/actor/parts/actor-spells.hbs',
+    'systems/qin-the-warring-states/templates/actor/parts/actor-effects.hbs',
+    'systems/qin-the-warring-states/templates/actor/parts/actor-skills.hbs',
+    'systems/qin-the-warring-states/templates/actor/parts/actor-semblance.hbs',
+    'systems/qin-the-warring-states/templates/actor/parts/actor-aura.hbs',
+    'systems/qin-the-warring-states/templates/actor/parts/actor-dust.hbs',
+    "systems/qin-the-warring-states/templates/actor/parts/actor-combat.hbs",
     // Item partials
-    'systems/rwby-unofficial-tabletop-remix/templates/item/parts/item-effects.hbs',
+    'systems/qin-the-warring-states/templates/item/parts/item-effects.hbs',
     //Rolls
-    'systems/rwby-unofficial-tabletop-remix/templates/rolls/parts/roll-dialog-content.hbs',
-    'systems/rwby-unofficial-tabletop-remix/templates/rolls/parts/attribute-selector.hbs',
+    'systems/qin-the-warring-states/templates/rolls/parts/roll-dialog-content.hbs',
+    'systems/qin-the-warring-states/templates/rolls/parts/attribute-selector.hbs',
   ]);
 };

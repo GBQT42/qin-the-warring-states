@@ -1,23 +1,13 @@
-export const RWBY = {};
+export const QIN = {};
 
 /**
- * The set of Ability Scores used within the system.
+ * The set of aspects used within the system.
  * @type {Object}
  */
-RWBY.abilities = {
-  for: 'RWBY.Ability.For.long',
-  dex: 'RWBY.Ability.Dex.long',
-  cor: 'RWBY.Ability.Cor.long',
-  per: 'RWBY.Ability.Per.long',
-  esp: 'RWBY.Ability.Esp.long',
-  dis: 'RWBY.Ability.Dis.long',
-};
-
-RWBY.abilityAbbreviations = {
-  for: 'RWBY.Ability.For.abbr',
-  dex: 'RWBY.Ability.Dex.abbr',
-  cor: 'RWBY.Ability.Cor.abbr',
-  per: 'RWBY.Ability.Per.abbr',
-  esp: 'RWBY.Ability.Esp.abbr',
-  dis: 'RWBY.Ability.Dis.abbr',
+QIN.aspects = {
+  metal: 'QIN.aspect.Metal',
+  water: 'QIN.aspect.Water',
+  earth: 'QIN.aspect.Earth',
+  fire: 'QIN.aspect.Fire',
+  wood: 'QIN.aspect.Wood'
 };

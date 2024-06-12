@@ -7,20 +7,44 @@ export default class qinCharacter extends qinActorBase {
     const requiredInteger = { required: true, nullable: false, integer: true };
     const schema = super.defineSchema();
 
-    schema.attributes = new fields.SchemaField({
-      level: new fields.SchemaField({
-        value: new fields.NumberField({ ...requiredInteger, initial: 1 })
-      }),
-      totalXP: new fields.NumberField({ ...requiredInteger, initial:0}),
-      spentXP: new fields.NumberField({ ...requiredInteger, initial:0})
+
+    schema.health = new fields.SchemaField({
+      value: new fields.NumberField({ ...requiredInteger, initial: 10, min: 0 }),
+      max: new fields.NumberField({ ...requiredInteger, initial: 10 }),//Derived
+      steps: new fields.SchemaField({
+        normal: new fields.SchemaField({
+          health: new fields.NumberField({ ...requiredInteger, initial: 10 }),
+          malus:new fields.NumberField({ ...requiredInteger, initial: 0 })
+        }),
+        bruised: new fields.SchemaField({
+          health: new fields.NumberField({ ...requiredInteger, initial: 10 }),
+          malus:new fields.NumberField({ ...requiredInteger, initial: 0 })
+        }),
+        lightWound: new fields.SchemaField({
+          health: new fields.NumberField({ ...requiredInteger, initial: 10 }),
+          malus:new fields.NumberField({ ...requiredInteger, initial: -1 })
+        }),
+        heavyWound: new fields.SchemaField({
+          health: new fields.NumberField({ ...requiredInteger, initial: 10 }),
+          malus:new fields.NumberField({ ...requiredInteger, initial: -3 })
+        }),
+        fatalWound: new fields.SchemaField({
+          health: new fields.NumberField({ ...requiredInteger, initial: 10 }),
+          malus:new fields.NumberField({ ...requiredInteger, initial: -5 })
+        })
+      })
+    });
+
+    schema.chi = new fields.SchemaField({
+      value: new fields.NumberField({ ...requiredInteger, initial: 5, min: 0 }),
+      max: new fields.NumberField({ ...requiredInteger, initial: 5 })
     });
 
     // Iterate over ability names and create a new SchemaField for each.
-    schema.abilities = new fields.SchemaField(Object.keys(CONFIG.RWBY.abilities).reduce((obj, ability) => {
+    schema.aspects = new fields.SchemaField(Object.keys(CONFIG.QIN.aspects).reduce((obj, ability) => {
       obj[ability] = new fields.SchemaField({
         value: new fields.NumberField({ ...requiredInteger, initial: 10, min: 0 }),
-        label: new fields.StringField({ required: true, blank: true }),
-        abbr: new fields.StringField({ required: true, blank: true })
+        label: new fields.StringField({ required: true, blank: true })
       });
       return obj;
     }, {}));
@@ -29,14 +53,15 @@ export default class qinCharacter extends qinActorBase {
   }
 
   prepareDerivedData() {
-    // Loop through ability scores, and add their modifiers to our sheet output.
-    for (const key in this.abilities) {
+    for (const key in this.aspects) {
       // Handle ability label localization.
-      this.abilities[key].label = game.i18n.localize(CONFIG.RWBY.abilities[key]) ?? key;
-      this.abilities[key].abbr = game.i18n.localize(CONFIG.RWBY.abilityAbbreviations[key]) ?? key;
-      this.abilities[key].rollableModifier = this.abilities[key].value + "[" + this.abilities[key].abbr + "]";
+      this.aspects[key].label = game.i18n.localize(CONFIG.QIN.aspects[key]) ?? key;
+      this.aspects[key].rollableModifier = this.aspects[key].value + "[" + this.aspects[key].abbr + "]";
     }
-    this.attributes.level.value = Math.floor(this.attributes.totalXP / 100);
+    this.health.max = Object.keys(this.health.steps).reduce((obj, step) => {
+      obj+= this.health.steps[step].health;
+      return obj;
+    }, 0);
   }
 
   getRollData() {
@@ -44,13 +69,11 @@ export default class qinCharacter extends qinActorBase {
 
     // Copy the ability scores to the top level, so that rolls can use
     // formulas like `@str.value + 4`.
-    if (this.abilities) {
-      for (let [k, v] of Object.entries(this.abilities)) {
+    if (this.aspects) {
+      for (let [k, v] of Object.entries(this.aspects)) {
         data[k] = foundry.utils.deepClone(v);
       }
     }
-
-    data.lvl = this.attributes.level.value;
 
     return data
   }

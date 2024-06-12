@@ -203,11 +203,11 @@
   text-align: center;
 }
 
-/* Styles limited to rwby-unofficial-tabletop-remix sheets */
-.rwby-unofficial-tabletop-remix .item-form {
+/* Styles limited to qin-the-warring-states sheets */
+.qin-the-warring-states .item-form {
   font-family: "Roboto", sans-serif;
 }
-.rwby-unofficial-tabletop-remix .sheet-header {
+.qin-the-warring-states .sheet-header {
   flex: 0 auto;
   overflow: hidden;
   display: flex;
@@ -216,43 +216,43 @@
   justify-content: flex-start;
   margin-bottom: 10px;
 }
-.rwby-unofficial-tabletop-remix .sheet-header .profile-img {
+.qin-the-warring-states .sheet-header .profile-img {
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
 }
-.rwby-unofficial-tabletop-remix .sheet-header .header-fields {
+.qin-the-warring-states .sheet-header .header-fields {
   flex: 1;
 }
-.rwby-unofficial-tabletop-remix .sheet-header h1.charname {
+.qin-the-warring-states .sheet-header h1.charname {
   height: 50px;
   padding: 0px;
   margin: 5px 0;
   border-bottom: 0;
 }
-.rwby-unofficial-tabletop-remix .sheet-header h1.charname input {
+.qin-the-warring-states .sheet-header h1.charname input {
   width: 100%;
   height: 100%;
   margin: 0;
 }
-.rwby-unofficial-tabletop-remix .sheet-tabs {
+.qin-the-warring-states .sheet-tabs {
   flex: 0;
 }
-.rwby-unofficial-tabletop-remix .sheet-body,
-.rwby-unofficial-tabletop-remix .sheet-body .tab,
-.rwby-unofficial-tabletop-remix .sheet-body .tab .editor {
+.qin-the-warring-states .sheet-body,
+.qin-the-warring-states .sheet-body .tab,
+.qin-the-warring-states .sheet-body .tab .editor {
   height: 100%;
 }
-.rwby-unofficial-tabletop-remix .tox .tox-editor-container {
+.qin-the-warring-states .tox .tox-editor-container {
   background: #fff;
 }
-.rwby-unofficial-tabletop-remix .tox .tox-edit-area {
+.qin-the-warring-states .tox .tox-edit-area {
   padding: 0 8px;
 }
-.rwby-unofficial-tabletop-remix .resource-label {
+.qin-the-warring-states .resource-label {
   font-weight: bold;
 }
-.rwby-unofficial-tabletop-remix .items-header {
+.qin-the-warring-states .items-header {
   height: 28px;
   margin: 2px 0;
   padding: 0;
@@ -261,17 +261,17 @@
   border: 2px groove #eeede0;
   font-weight: bold;
 }
-.rwby-unofficial-tabletop-remix .items-header > * {
+.qin-the-warring-states .items-header > * {
   font-size: 14px;
   text-align: center;
 }
-.rwby-unofficial-tabletop-remix .items-header .item-name {
+.qin-the-warring-states .items-header .item-name {
   font-weight: bold;
   padding-left: 5px;
   text-align: left;
   display: flex;
 }
-.rwby-unofficial-tabletop-remix .items-list {
+.qin-the-warring-states .items-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -279,12 +279,12 @@
   scrollbar-width: thin;
   color: #444;
 }
-.rwby-unofficial-tabletop-remix .items-list .item-list {
+.qin-the-warring-states .items-list .item-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.rwby-unofficial-tabletop-remix .items-list .item-name {
+.qin-the-warring-states .items-list .item-name {
   flex: 2;
   margin: 0;
   overflow: hidden;
@@ -293,46 +293,46 @@
   align-items: center;
   display: flex;
 }
-.rwby-unofficial-tabletop-remix .items-list .item-name h3, .rwby-unofficial-tabletop-remix .items-list .item-name h4 {
+.qin-the-warring-states .items-list .item-name h3, .qin-the-warring-states .items-list .item-name h4 {
   margin: 0;
   white-space: nowrap;
   overflow-x: hidden;
 }
-.rwby-unofficial-tabletop-remix .items-list .item-controls {
+.qin-the-warring-states .items-list .item-controls {
   display: flex;
   flex: 0 0 content;
   justify-content: flex-end;
 }
-.rwby-unofficial-tabletop-remix .items-list .item-controls a {
+.qin-the-warring-states .items-list .item-controls a {
   font-size: 12px;
   text-align: center;
   margin: 0 6px;
 }
-.rwby-unofficial-tabletop-remix .items-list .item {
+.qin-the-warring-states .items-list .item {
   align-items: center;
   padding: 0 2px;
   border-bottom: 1px solid #c9c7b8;
 }
-.rwby-unofficial-tabletop-remix .items-list .item:last-child {
+.qin-the-warring-states .items-list .item:last-child {
   border-bottom: none;
 }
-.rwby-unofficial-tabletop-remix .items-list .item .item-name {
+.qin-the-warring-states .items-list .item .item-name {
   color: #191813;
 }
-.rwby-unofficial-tabletop-remix .items-list .item .item-name .item-image {
+.qin-the-warring-states .items-list .item .item-name .item-image {
   flex: 0 0 30px;
   height: 30px;
   background-size: 30px;
   border: none;
   margin-right: 5px;
 }
-.rwby-unofficial-tabletop-remix .items-list .item-prop {
+.qin-the-warring-states .items-list .item-prop {
   text-align: center;
   border-left: 1px solid #c9c7b8;
   border-right: 1px solid #c9c7b8;
   font-size: 12px;
 }
-.rwby-unofficial-tabletop-remix .items-list .items-header {
+.qin-the-warring-states .items-list .items-header {
   height: 28px;
   margin: 2px 0;
   padding: 0;
@@ -341,26 +341,26 @@
   border: 2px groove #eeede0;
   font-weight: bold;
 }
-.rwby-unofficial-tabletop-remix .items-list .items-header > * {
+.qin-the-warring-states .items-list .items-header > * {
   font-size: 12px;
   text-align: center;
 }
-.rwby-unofficial-tabletop-remix .items-list .items-header .item-name {
+.qin-the-warring-states .items-list .items-header .item-name {
   padding-left: 5px;
   text-align: left;
 }
-.rwby-unofficial-tabletop-remix .item-formula {
+.qin-the-warring-states .item-formula {
   flex: 0 0 200px;
   padding: 0 8px;
 }
-.rwby-unofficial-tabletop-remix .effects .item .effect-source,
-.rwby-unofficial-tabletop-remix .effects .item .effect-duration,
-.rwby-unofficial-tabletop-remix .effects .item .effect-controls {
+.qin-the-warring-states .effects .item .effect-source,
+.qin-the-warring-states .effects .item .effect-duration,
+.qin-the-warring-states .effects .item .effect-controls {
   text-align: center;
   border-left: 1px solid #c9c7b8;
   border-right: 1px solid #c9c7b8;
   font-size: 12px;
 }
-.rwby-unofficial-tabletop-remix .effects .item .effect-controls {
+.qin-the-warring-states .effects .item .effect-controls {
   border: none;
 }

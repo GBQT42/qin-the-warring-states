@@ -78,7 +78,7 @@ export class qinActorSheet extends ActorSheet {
    * @return {undefined}
    */
   _prepareCharacterData(context) {
-    
+
   }
 
   /**
@@ -175,7 +175,7 @@ export class qinActorSheet extends ActorSheet {
       onManageActiveEffect(ev, document);
     });
 
-    // Rollable abilities.
+    // Rollable aspects.
     html.on('click', '.rollable', this._onRoll.bind(this));
 
     // Drag events for macros.
@@ -234,120 +234,19 @@ export class qinActorSheet extends ActorSheet {
         const item = this.actor.items.get(itemId);
         if (item) return item.roll();
       }
-    } else
+    } else if (dataset.roll) {// Handle rolls that supply the formula directly.
 
-      // Handle rolls that supply the formula directly.
-      if (dataset.roll) {
-        let label = dataset.label ? `${dataset.label}` : '';
-        let roll = new Roll(dataset.roll, this.actor.getRollData());
-        roll.toMessage({
-          speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-          flavor: label,
-          rollMode: game.settings.get('core', 'rollMode'),
-        });
-        return roll;
-      } else
-        // 
-        if (dataset.rollModifier) {
-          return this.rwbyRollSimple(dataset, event.ctrlKey);
-        } else {
-          console.log("Unknown roll type.");
-        }
+      let label = dataset.label ? `${dataset.label}` : '';
+      let roll = new Roll(dataset.roll, this.actor.getRollData());
+      roll.toMessage({
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        flavor: label,
+        rollMode: game.settings.get('core', 'rollMode'),
+      });
+      return roll;
+    } else {
+      console.log("Unknown roll type.");
+    }
   }
 
-
-
-
-  async rwbyRollSimple(dataset, skipDialog=false) {
-    console.log("Rolling a RWBY roll!");
-
-    let label = dataset.label;
-    let modifierString = dataset.rollModifier;
-    let secondAttribute = (dataset.secondAttribute === "true");
-    const template_data = { secondAttribute: secondAttribute };
-    const dialogContent = await renderTemplate("systems/rwby-unofficial-tabletop-remix/templates/rolls/parts/roll-dialog-content.hbs", template_data);
-
-    if(skipDialog){
-      if(secondAttribute){
-        ui.notifications.warn("Skipping secondary attribute selection");
-      }
-      this.rwbyDoRoll(modifierString,0,label);
-    } else{
-       let d = new Dialog({
-      title: "Roll Dialog",
-      content: dialogContent,
-      buttons: {
-        disav2: {
-          label: "Désavantage Majeur",
-          callback: (html) => this.rwbyRollParseFromHtml(html, modifierString, -2, label)
-        },
-        disav1: {
-          label: "Désavantage",
-          callback: (html) => this.rwbyRollParseFromHtml(html, modifierString, -1, label)
-        },
-        av1: {
-          label: "Avantage",
-          callback: (html) => this.rwbyRollParseFromHtml(html, modifierString, 1, label)
-        },
-        av2: {
-          label: "Avantage Majeur",
-          callback: (html) => this.rwbyRollParseFromHtml(html, modifierString, 2, label)
-        },
-        regular: {
-          label: "Normal",
-          callback: (html) => this.rwbyRollParseFromHtml(html, modifierString, 0, label)
-        }
-      },
-      default: "regular"
-    });
-    d.render(true);
-    
-
-    }
-   
-
-    return;
-  }
-
-  //See rwbyDoRoll for details on params
-  rwbyRollParseFromHtml(html, modifierString, difficulty = 0, label = "RWBY roll") {
-    let dialogModifier = html.find('input[name=\'roll.modifier.extra\']').val();
-    let extraAttribute = html.find('select[name=\'second.attribute\']').val();
-    if (extraAttribute) {
-      modifierString = modifierString + "+" + extraAttribute;
-      //label = label + " + " + extraAttribute;
-    }
-    if (dialogModifier != "0" && dialogModifier != "") {
-      modifierString = modifierString + "+" + dialogModifier + "[Mod]"
-    }
-    return this.rwbyDoRoll(modifierString, difficulty, label);
-  }
-
-
-  /**
-   * 
-   * @param {String} modifierString A string containing a formula evaluating to a number in the context of a foundry roll, such as "@abilities.per.value + @abilities.dis.value + 3".
-   * @param {int} difficulty An int representing the difficulty/ease of the roll: -2 for major disadvantage, -1 for disadvantage, 0 for a regular roll, +1 for advantage and +2 for major advantage
-   * @param {String} label A name for the roll, as you want to display it
-   * @returns 
-   */
-  rwbyDoRoll(modifierString, difficulty = 0, label = "RWBY roll") {
-    let diceString = "2d12";
-    if (difficulty < 0) {
-      diceString = (2 - difficulty) + "d12kl2";
-    } else if (difficulty > 0) {
-      diceString = (2 + difficulty) + "d12kh2";
-    }
-
-    let rollString = diceString + "+" + modifierString;
-    console.log("Rolling " + rollString);
-    let roll = new Roll(rollString, this.actor.getRollData());
-
-    roll.toMessage({
-      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor: label,
-      rollMode: game.settings.get('core', 'rollMode'),
-    });
-    return roll;
-  }
 }

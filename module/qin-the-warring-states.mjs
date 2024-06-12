@@ -6,6 +6,8 @@ import { qinActorSheet } from './sheets/actor-sheet.mjs';
 import { qinItemSheet } from './sheets/item-sheet.mjs';
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from './helpers/templates.mjs';
+import { QIN } from './helpers/config.mjs';
+import { default as YinYangDice } from './dice/yin-yang-dice.mjs';
 // Import DataModel classes
 import * as models from './data/_module.mjs';
 
@@ -18,16 +20,20 @@ Hooks.once('init', function () {
   // accessible in global contexts.
   game.qin = {
     qinActor,
-    qinItem,
-    rollItemMacro,
+    qinItem
   };
+
+
+
+  // Add custom constants for configuration.
+  CONFIG.QIN = QIN;
 
   /**
    * Set an initiative formula for the system
    * @type {String}
    */
   CONFIG.Combat.initiative = {
-    formula: '2d12 + @abilities.dex.value + @abilities.per.value',
+    formula: '2d12 + @aspects.dex.value + @aspects.per.value',
     decimals: 2,
   };
 
@@ -63,10 +69,12 @@ Hooks.once('init', function () {
     label: 'QIN.SheetLabels.Item',
   });
 
-//Auto expand rolls
-  Hooks.on("renderChatMessage", function (message,html){
+
+
+  //Auto expand rolls
+  Hooks.on("renderChatMessage", function (message, html) {
     html.find(`div.dice-tooltip`).css("display", "block")
-});
+  });
 
   // Preload Handlebars templates.
   return preloadHandlebarsTemplates();
@@ -86,6 +94,6 @@ Handlebars.registerHelper('toLowerCase', function (str) {
 /* -------------------------------------------- */
 
 Hooks.once('ready', function () {
-  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-  Hooks.on('hotbarDrop', (bar, data, slot) => createItemMacro(data, slot));
+  CONFIG.Dice.types.unshift(YinYangDice);
+  CONFIG.Dice.terms.y = YinYangDice;
 });
