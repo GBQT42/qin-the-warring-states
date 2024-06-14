@@ -52,11 +52,6 @@ export class qinActorSheet extends ActorSheet {
       this._prepareCharacterData(context);
     }
 
-    // Prepare NPC data and items.
-    if (actorData.type == 'npc') {
-      this._prepareItems(context);
-    }
-
     // Add roll data for TinyMCE editors.
     context.rollData = context.actor.getRollData();
 
