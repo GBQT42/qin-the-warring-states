@@ -43,7 +43,7 @@
   },
 
   "QIN": {
-    "aspects": {
+    "aspect": {
       "Wood":"Bois",
       "Metal":"Métal",
       "Water":"Eau",

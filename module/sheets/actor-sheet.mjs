@@ -91,13 +91,10 @@ export class qinActorSheet extends ActorSheet {
   _prepareItems(context) {
     // Initialize containers.
     const gear = [];
-    const features = [];
     const skills = [];
-    const semblanceFeatures = [];
-    const auraFeatures = [];
-    const dusts = [];
     const combatFeatures = [];
-    const defenses = [];
+    const taos = [];
+    const magics = [];
 
     // Iterate through items, allocating to containers
     for (let i of context.items) {
@@ -105,22 +102,14 @@ export class qinActorSheet extends ActorSheet {
       // Append to gear.
       if (i.type === 'item') {
         gear.push(i);
-      }
-      // Append to features.
-      else if (i.type === 'feature') {
-        features.push(i);
       } else if (i.type === "skill") {
         skills.push(i);
-      } else if (i.type === "semblance") {
-        semblanceFeatures.push(i);
-      } else if (i.type === "auraFeature") {
-        auraFeatures.push(i);
-      } else if (i.type === "dust") {
-        dusts.push(i);
       } else if (i.type === "combatFeature") {
         combatFeatures.push(i);
-      } else if (i.type === "defense") {
-        defenses.push(i);
+      } else if (i.type === "tao") {
+        taos.push(i);
+      } else if (i.type === "magic") {
+        magics.push(i);
       } else {
         console.log("Unsupported type: " + i.type);
       }
@@ -128,13 +117,10 @@ export class qinActorSheet extends ActorSheet {
 
     // Assign and return
     context.gear = gear;
-    context.features = features;
     context.skills = skills;
-    context.semblanceFeatures = semblanceFeatures;
-    context.auraFeatures = auraFeatures;
-    context.dusts = dusts;
     context.combatFeatures = combatFeatures;
-    context.defenses = defenses;
+    context.taos = taos;
+    context.magics = magics;
   }
 
   /* -------------------------------------------- */

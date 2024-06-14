@@ -34,6 +34,16 @@
 
       </div>
     </div>
+    <div class="flex-group-right" style="flex-flow:column; display: flex; flex: 0 0 70px">
+      {{#each system.aspects as |aspect id|}}
+      <span class="resource flex-group-right" style="flex-flow:row; display: flex;">
+        <label>{{localize aspect.label}}</label>
+        <input class="flexshrink" style="flex-basis: 25px;" type="text" name="system.aspects.{{id}}.value"
+          value="{{aspect.value}}" data-dtype="Number" />
+      </span>
+
+      {{/each}}
+    </div>
   </header>
 
   {{!-- Sheet Tab Navigation --}}
@@ -52,7 +62,7 @@
 
     {{!-- General Tab --}}
     <div class="tab skills" data-group="primary" data-tab="skills">
-      
+
     </div>
 
     {{!-- Biography Tab --}}
@@ -70,17 +80,17 @@
     </div>
     {{!-- Combat Tab --}}
     <div class="tab taos" data-group="primary" data-tab="taos">
-      
+
     </div>
     {{!-- Owned Semblance Tab --}}
     <div class="tab esoterism" data-group="primary" data-tab="esoterism">
-      
+
     </div>
 
     {{!-- Owned Dusts Tab --}}
     <div class="tab combat" data-group="primary" data-tab="combat">
       <div>
-        
+
       </div>
     </div>
 

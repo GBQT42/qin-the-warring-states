@@ -180,6 +180,11 @@
   flex: 0;
 }
 
+.flexwrap {
+  flex-grow: 0;
+  flex-basis: auto ;
+}
+
 .flex-between {
   justify-content: space-between;
 }
