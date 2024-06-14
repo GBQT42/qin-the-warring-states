@@ -86,7 +86,7 @@ export class qinActorSheet extends ActorSheet {
   _prepareItems(context) {
     // Initialize containers.
     const gear = [];
-    const skills = [];
+    const skills = {};
     const combatFeatures = [];
     const taos = [];
     const magics = [];
@@ -98,7 +98,9 @@ export class qinActorSheet extends ActorSheet {
       if (i.type === 'item') {
         gear.push(i);
       } else if (i.type === "skill") {
-        skills.push(i);
+        const aspect = i.system.relatedAspect;
+        skills[aspect] = skills[aspect] || [];
+        skills[aspect].push(i);
       } else if (i.type === "combatFeature") {
         combatFeatures.push(i);
       } else if (i.type === "tao") {
@@ -216,7 +218,7 @@ export class qinActorSheet extends ActorSheet {
         if (item) return item.roll();
       }
     } else if (dataset.roll) {// Handle rolls that supply the formula directly.
-
+      console.log("Rolling formula: " + dataset.roll);
       let label = dataset.label ? `${dataset.label}` : '';
       let roll = new Roll(dataset.roll, this.actor.getRollData());
       roll.toMessage({

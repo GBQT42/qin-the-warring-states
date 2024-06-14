@@ -5,9 +5,9 @@ export const QIN = {};
  * @type {Object}
  */
 QIN.aspects = {
-  metal: 'QIN.aspect.Metal',
-  water: 'QIN.aspect.Water',
-  earth: 'QIN.aspect.Earth',
-  fire: 'QIN.aspect.Fire',
-  wood: 'QIN.aspect.Wood'
+  metal: 'QIN.aspect.metal',
+  water: 'QIN.aspect.water',
+  earth: 'QIN.aspect.earth',
+  fire: 'QIN.aspect.fire',
+  wood: 'QIN.aspect.wood'
 };

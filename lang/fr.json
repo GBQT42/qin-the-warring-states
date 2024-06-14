@@ -44,11 +44,11 @@
 
   "QIN": {
     "aspect": {
-      "Wood":"Bois",
-      "Metal":"Métal",
-      "Water":"Eau",
-      "Fire":"Feu",
-      "Earth":"Terre"
+      "wood":"Bois",
+      "metal":"Métal",
+      "water":"Eau",
+      "fire":"Feu",
+      "earth":"Terre"
     }
   }
 }

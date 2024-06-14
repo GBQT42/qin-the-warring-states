@@ -28,16 +28,18 @@
         {{!-- Attributes Tab --}}
         <div class="tab attributes" data-group="primary" data-tab="attributes">
             {{!-- As you add new fields, add them in here! --}}
-            <div class="resource">
+            <span class="resource">
                 <label class="resource-label">Value:</label>
-                <input type="text" name="system.value" value="{{system.value}}" data-dtype="Number" ></input>
-            </div>
+                <input type="text" name="system.value" value="{{system.value}}" data-dtype="Number"></input>
+            </span>
             <div class="resource">
                 <label class="resource-label">Related Aspect:</label>
-                <input type="text" name="system.relatedAspect" value="{{system.relatedAspect}}" data-dtype="String" ></input>
+                <select name="system.relatedAspect" value="system.relatedAspect" data-type="String">
+                    {{selectOptions item.system.allowedAspectChoices selected=system.relatedAspect localize=true}}
+                </select>
             </div>
         </div>
     </section>
 </form>
 
-{{log system}}
+{{log this}}
