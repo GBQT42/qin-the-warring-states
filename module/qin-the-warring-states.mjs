@@ -49,7 +49,8 @@ Hooks.once('init', function () {
   CONFIG.Item.documentClass = qinItem;
   CONFIG.Item.dataModels = {
     item: models.qinItem,
-    skill: models.qinSkill
+    skill: models.qinSkill,
+    combatFeature: models.qinCombatFeature
   }
 
   // Active Effects are never copied to the Actor,
