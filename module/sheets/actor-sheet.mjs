@@ -216,20 +216,65 @@ export class qinActorSheet extends ActorSheet {
         const itemId = element.closest('.item').dataset.itemId;
         const item = this.actor.items.get(itemId);
         if (item) return item.roll();
+      } else if (dataset.rollType == 'roll') {
+        return this.roll(dataset.roll, dataset.label);
+      } else if (dataset.rollType == 'roll-damage') {
+        return this.rollDamage(dataset.roll, dataset.label, dataset.damage);
       }
-    } else if (dataset.roll) {// Handle rolls that supply the formula directly.
-      console.log("Rolling formula: " + dataset.roll);
-      let label = dataset.label ? `${dataset.label}` : '';
-      let roll = new Roll(dataset.roll, this.actor.getRollData());
-      roll.toMessage({
-        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-        flavor: label,
-        rollMode: game.settings.get('core', 'rollMode'),
-      });
-      return roll;
+    } else if (dataset.roll) {// Fallback.
+      this.roll(dataset.roll, dataset.label)
     } else {
       console.log("Unknown roll type.");
     }
   }
 
+
+  roll(formula, label) {
+    console.log("Rolling formula: " + formula);
+    label = label ? `${dataset.label}` : '';
+    let roll = new Roll(formula, this.actor.getRollData());
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      flavor: label,
+      rollMode: game.settings.get('core', 'rollMode'),
+    });
+    return roll;
+  }
+
+
+  rollDamage(formula, label, damage) {
+
+    console.log("Rolling formula with damage: " + formula);
+    label = label ? `${label}` : '';
+    let roll = new Roll(formula, this.actor.getRollData());
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+      flavor: label + " attack",
+      rollMode: game.settings.get('core', 'rollMode'),
+    }).then(() => {
+      let yyResults = roll.dice[0].results;
+      let dmgBonus = this.computeYYDamageBonus(yyResults);
+      let dmgFormula = "@aspects.metal.rollableModifier + " + damage + "[W.Dam] + " + dmgBonus + "[YY]";
+      let dmgRoll = new Roll(dmgFormula, this.actor.getRollData());
+      dmgRoll.toMessage({
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        flavor: label + " damage",
+        rollMode: game.settings.get('core', 'rollMode'),
+      });
+    });
+    return roll;
+  }
+
+  computeYYDamageBonus(yyResults) {
+    return yyResults.map(v => this.computeYYSingleDamageBonus(v)).reduce((acc, v) => acc + v, 0);
+  }
+  computeYYSingleDamageBonus(yyResult) {
+    if (yyResult.yin < yyResult.yang) {
+      return yyResult.yang - yyResult.yin;
+    } else if (yyResult.yin === yyResult.yang) {
+      return yyResult.yang;
+    } else {
+      return 0;
+    }
+  }
 }

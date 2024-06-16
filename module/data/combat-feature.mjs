@@ -10,7 +10,7 @@ export default class qinCombatFeature extends qinItemBase {
         const requiredInteger = { required: true, nullable: false, integer: true };
         const schema = super.defineSchema();
 
-        schema.attackBonus = new fields.NumberField({...requiredInteger, initial: 0 });
+        schema.skillLevel = new fields.NumberField({...requiredInteger, initial: 0 });
         schema.damage = new fields.NumberField({...requiredInteger, initial: 0 });
         schema.resistance = new fields.NumberField({...requiredInteger, initial: 7 });
         schema.knownManeuvers = new fields.StringField({required: true, initial:""});

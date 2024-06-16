@@ -8,10 +8,6 @@
       "Esp": { "long": "Esprit", "abbr": "ESP" },
       "Dis": { "long": "Discipline", "abbr": "DIS" }
     },
-    "SheetLabels": {
-      "Actor": "rwby Actor Sheet",
-      "Item": "rwby Item Sheet"
-    },
     "Item": {
       "Spell": {
         "SpellLVL": "Level {level} Spells",
@@ -29,8 +25,7 @@
 
   "TYPES": {
     "Actor": {
-      "character": "Character",
-      "npc": "NPC"
+      "character": "Character"
     },
     "Item": {
       "item": "Item",
@@ -43,6 +38,10 @@
   },
 
   "QIN": {
+    "SheetLabels": {
+      "Actor": "Qin Actor Sheet",
+      "Item": "Qin Item Sheet"
+    },
     "aspect": {
       "wood":"Bois",
       "metal":"Métal",

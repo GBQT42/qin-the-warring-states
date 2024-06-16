@@ -44,7 +44,8 @@ export default class qinCharacter extends qinActorBase {
     schema.aspects = new fields.SchemaField(Object.keys(CONFIG.QIN.aspects).reduce((obj, ability) => {
       obj[ability] = new fields.SchemaField({
         value: new fields.NumberField({ ...requiredInteger, initial: 2, min: 1 }),
-        label: new fields.StringField({ required: true, blank: true })
+        label: new fields.StringField({ required: true, blank: true }),
+        rollableModifier: new fields.StringField({ required: true, blank: true })
       });
       return obj;
     }, {}));
@@ -56,7 +57,7 @@ export default class qinCharacter extends qinActorBase {
     for (const key in this.aspects) {
       // Handle ability label localization.
       this.aspects[key].label = game.i18n.localize(CONFIG.QIN.aspects[key]) ?? key;
-      this.aspects[key].rollableModifier = this.aspects[key].value + "[" + this.aspects[key].abbr + "]";
+      this.aspects[key].rollableModifier = this.aspects[key].value + "[" + this.aspects[key].label + "]";
     }
     this.health.max = Object.keys(this.health.steps).reduce((obj, step) => {
       obj+= this.health.steps[step].health;
