@@ -68,7 +68,8 @@
 
     {{!-- Biography Tab --}}
     <div class="tab description" data-group="primary" data-tab="description">
-      TODO XP + Notoriety + Flaw + Virtue
+      {{!-- TODO XP + Notoriety + Flaw + Virtue --}}
+      
 
       {{!-- If you want TinyMCE editors to output inline rolls when rendered, you need to pass the actor's roll data to
       the rollData property. --}}
@@ -81,10 +82,12 @@
     </div>
     {{!-- Combat Tab --}}
     <div class="tab taos" data-group="primary" data-tab="taos">
+      {{> "systems/qin-the-warring-states/templates/actor/parts/actor-taos.hbs"}}
 
     </div>
     {{!-- Owned Semblance Tab --}}
     <div class="tab esoterism" data-group="primary" data-tab="esoterism">
+      {{> "systems/qin-the-warring-states/templates/actor/parts/actor-magic.hbs"}}
 
     </div>
 

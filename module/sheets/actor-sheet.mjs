@@ -89,7 +89,7 @@ export class qinActorSheet extends ActorSheet {
     const skills = {};
     const combatFeatures = [];
     const taos = [];
-    const magics = [];
+    const magics = {};
 
     // Iterate through items, allocating to containers
     for (let i of context.items) {
@@ -106,7 +106,9 @@ export class qinActorSheet extends ActorSheet {
       } else if (i.type === "tao") {
         taos.push(i);
       } else if (i.type === "magicFeature") {
-        magics.push(i);
+        const type = i.system.type;
+        magics[type] = magics[type] || [];
+        magics[type].push(i);
       } else {
         console.log("Unsupported type: " + i.type);
       }
