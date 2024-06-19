@@ -1,12 +1,30 @@
 {
   "RWBY": {
     "Ability": {
-      "For": { "long": "Force", "abbr": "FOR" },
-      "Dex": { "long": "Dextérité", "abbr": "DEX" },
-      "Cor": { "long": "Corps", "abbr": "COR" },
-      "Per": { "long": "Perception", "abbr": "PER" },
-      "Esp": { "long": "Esprit", "abbr": "ESP" },
-      "Dis": { "long": "Discipline", "abbr": "DIS" }
+      "For": {
+        "long": "Force",
+        "abbr": "FOR"
+      },
+      "Dex": {
+        "long": "Dextérité",
+        "abbr": "DEX"
+      },
+      "Cor": {
+        "long": "Corps",
+        "abbr": "COR"
+      },
+      "Per": {
+        "long": "Perception",
+        "abbr": "PER"
+      },
+      "Esp": {
+        "long": "Esprit",
+        "abbr": "ESP"
+      },
+      "Dis": {
+        "long": "Discipline",
+        "abbr": "DIS"
+      }
     },
     "Item": {
       "Spell": {
@@ -22,7 +40,6 @@
       "Inactive": "Inactive Effects"
     }
   },
-
   "TYPES": {
     "Actor": {
       "character": "Character"
@@ -36,18 +53,25 @@
       "auraFeature": "Technique d'Aura"
     }
   },
-
   "QIN": {
     "SheetLabels": {
       "Actor": "Qin Actor Sheet",
       "Item": "Qin Item Sheet"
     },
     "aspect": {
-      "wood":"Bois",
-      "metal":"Métal",
-      "water":"Eau",
-      "fire":"Feu",
-      "earth":"Terre"
+      "wood": "Bois",
+      "metal": "Métal",
+      "water": "Eau",
+      "fire": "Feu",
+      "earth": "Terre"
+    },
+    "magic": {
+      "types": {
+        "exorcism": "Exorcisme",
+        "divination": "Divination",
+        "internalAlchemy": "Alchimie Interne",
+        "externalAlchemy": "Alchimie Externe"
+      }
     }
   }
 }

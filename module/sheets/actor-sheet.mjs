@@ -105,7 +105,7 @@ export class qinActorSheet extends ActorSheet {
         combatFeatures.push(i);
       } else if (i.type === "tao") {
         taos.push(i);
-      } else if (i.type === "magic") {
+      } else if (i.type === "magicFeature") {
         magics.push(i);
       } else {
         console.log("Unsupported type: " + i.type);
@@ -231,7 +231,7 @@ export class qinActorSheet extends ActorSheet {
 
   roll(formula, label) {
     console.log("Rolling formula: " + formula);
-    label = label ? `${dataset.label}` : '';
+    label = label ? label : 'Roll: ';
     let roll = new Roll(formula, this.actor.getRollData());
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),

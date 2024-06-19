@@ -8,7 +8,9 @@
     "types": [
       "skill",
       "item",
-      "combatFeature"
+      "combatFeature",
+      "tao",
+      "magicFeature"
     ]
   }
 }
