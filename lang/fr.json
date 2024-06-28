@@ -72,6 +72,12 @@
         "internalAlchemy": "Alchimie Interne",
         "externalAlchemy": "Alchimie Externe"
       }
+    },
+    "settings": {
+      "exploding-dice": {
+        "name": "Dé Yin/Yang explosif",
+        "hint": "Cocher pour lancer un dé Ying/Yang supplémentaire lorsqu'une Harmonie a lieu."
+      }
     }
   }
 }

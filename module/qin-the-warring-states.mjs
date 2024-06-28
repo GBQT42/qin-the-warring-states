@@ -72,15 +72,31 @@ Hooks.once('init', function () {
     label: 'QIN.SheetLabels.Item',
   });
 
+  // Register settings
 
-
-  //Auto expand rolls
-  Hooks.on("renderChatMessage", function (message, html) {
-    html.find(`div.dice-tooltip`).css("display", "block")
+  game.settings.register('qin-the-warring-states', 'exploding-dice', {
+    name: 'QIN.settings.exploding-dice.name',
+    hint: 'QIN.settings.exploding-dice.hint',
+    scope: 'world',     
+    config: true,       
+    type: Boolean,       // You want the primitive class, e.g. Number, not the name of the class as a string
+    default: false,
+    onChange: value => { // value is the new value of the setting
+      console.log(value)
+    },
+    requiresReload: false, // true if you want to prompt the user to reload
   });
+
+
 
   // Preload Handlebars templates.
   return preloadHandlebarsTemplates();
+});
+
+
+//Auto expand rolls
+Hooks.on("renderChatMessage", function (message, html) {
+  html.find(`div.dice-tooltip`).css("display", "block")
 });
 
 /* -------------------------------------------- */

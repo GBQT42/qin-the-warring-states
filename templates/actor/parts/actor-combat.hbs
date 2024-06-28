@@ -16,7 +16,7 @@
     <li class='item flexrow' data-item-id='{{combatFeature._id}}'>
       <div class='item-name'>
         <div class='item-image'>
-          <a class='rollable' data-roll-type='roll-damage' data-roll="1dY + @aspects.metal.rollableModifier + {{system.skillLevel}}[Skill]" data-damage="{{system.damage}}" data-label="{{combatFeature.name}}">
+          <a class='rollable' data-roll-type='yy-roll-damage' data-roll-modifier="@aspects.metal.rollableModifier + {{system.skillLevel}}[Skill]" data-damage="{{system.damage}}" data-label="{{combatFeature.name}}">
             <img
               src='{{combatFeature.img}}'
               title='{{combatFeature.name}}'

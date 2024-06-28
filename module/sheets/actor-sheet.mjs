@@ -220,8 +220,12 @@ export class qinActorSheet extends ActorSheet {
         if (item) return item.roll();
       } else if (dataset.rollType == 'roll') {
         return this.roll(dataset.roll, dataset.label);
-      } else if (dataset.rollType == 'roll-damage') {
-        return this.rollDamage(dataset.roll, dataset.label, dataset.damage);
+      } else if (dataset.rollType == 'yy-roll') {
+        return this.yyRoll(dataset.rollModifier, dataset.label);
+      } else if (dataset.rollType == 'yy-roll-damage') {
+        return this.yyRollDamage(dataset.rollModifier, dataset.label, dataset.damage);
+      } else {
+        console.log("Unknown roll type.");
       }
     } else if (dataset.roll) {// Fallback.
       this.roll(dataset.roll, dataset.label)
@@ -230,6 +234,18 @@ export class qinActorSheet extends ActorSheet {
     }
   }
 
+  yyRoll(modifier, label) {
+    this.roll(this.prependYyDieAccordingToSetting(modifier), label);
+  }
+
+  prependYyDieAccordingToSetting(modifier) {
+    const exDice = game.settings.get('qin-the-warring-states', 'exploding-dice');
+    if (exDice) {
+      return "1dYx +" + modifier;
+    } else {
+      return "1dY +" + modifier;
+    }
+  }
 
   roll(formula, label) {
     console.log("Rolling formula: " + formula);
@@ -244,7 +260,9 @@ export class qinActorSheet extends ActorSheet {
   }
 
 
-  rollDamage(formula, label, damage) {
+  yyRollDamage(modifier, label, damage) {
+
+    const formula = this.prependYyDieAccordingToSetting(modifier);
 
     console.log("Rolling formula with damage: " + formula);
     label = label ? `${label}` : '';
