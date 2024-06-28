@@ -240,7 +240,6 @@ export class qinActorSheet extends ActorSheet {
 
   static prepareYyDice(modifier) {
     const exDice = game.settings.get('qin-the-warring-states', 'exploding-dice');
-    this.actor()
     const wndModifier = " + @health.healthMalus[Wnd]"
     if (exDice) {
       return "1dYx +" + modifier + wndModifier;

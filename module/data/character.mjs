@@ -46,7 +46,11 @@ export default class qinCharacter extends qinActorBase {
       value: new fields.NumberField({ ...requiredInteger, initial: 5, min: 0 }),
       max: new fields.NumberField({ ...requiredInteger, initial: 5 })
     });
-    
+
+    schema.resistance = new fields.NumberField({...requiredInteger, initial:-1}),//Derived
+
+    schema.passiveDefense = new fields.NumberField({...requiredInteger, initial:-1}),//Derived
+
     schema.actions = new fields.SchemaField({
       value: new fields.NumberField({ ...requiredInteger, initial: 3, min: 0 }),
       max: new fields.NumberField({ ...requiredInteger, initial: 3 })
@@ -71,11 +75,15 @@ export default class qinCharacter extends qinActorBase {
       this.aspects[key].label = game.i18n.localize(CONFIG.QIN.aspects[key]) ?? key;
       this.aspects[key].rollableModifier = this.aspects[key].value + "[" + this.aspects[key].label + "]";
     }
+
+    //Max health
     this.health.max = Object.keys(this.health.steps).reduce((obj, step) => {
       obj += this.health.steps[step].health;
       return obj;
     }, 0);
 
+
+    //Health malus
     let healthToAssign = this.health.value;
     const numSteps=Object.keys(this.health.steps).length;
     for (var i = 0; i < numSteps; i++) {
@@ -87,6 +95,11 @@ export default class qinCharacter extends qinActorBase {
         break;
       }
     }
+
+    //Resistance & Passive defense
+
+    this.resistance = this.aspects.metal.value + this.aspects.earth.value;
+    this.passiveDefense = 2 + this.aspects.water.value + this.aspects.wood.value;
 
   }
 
