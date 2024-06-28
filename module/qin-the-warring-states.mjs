@@ -114,7 +114,7 @@ Hooks.once('ready', function () {
    * @type {String}
    */
   CONFIG.Combat.initiative = {
-    formula: qinActorSheet.prependYyDieAccordingToSetting('@aspects.water.rollableModifier*1.01'),
+    formula: qinActorSheet.prepareYyDice('@aspects.water.rollableModifier*1.01'),
     decimals: 2,
   };
 });

@@ -46,6 +46,11 @@ export default class qinCharacter extends qinActorBase {
       value: new fields.NumberField({ ...requiredInteger, initial: 5, min: 0 }),
       max: new fields.NumberField({ ...requiredInteger, initial: 5 })
     });
+    
+    schema.actions = new fields.SchemaField({
+      value: new fields.NumberField({ ...requiredInteger, initial: 3, min: 0 }),
+      max: new fields.NumberField({ ...requiredInteger, initial: 3 })
+    });
 
     // Iterate over ability names and create a new SchemaField for each.
     schema.aspects = new fields.SchemaField(Object.keys(CONFIG.QIN.aspects).reduce((obj, ability) => {
