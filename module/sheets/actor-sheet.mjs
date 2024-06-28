@@ -235,10 +235,10 @@ export class qinActorSheet extends ActorSheet {
   }
 
   yyRoll(modifier, label) {
-    this.roll(this.prependYyDieAccordingToSetting(modifier), label);
+    this.roll(qinActorSheet.prependYyDieAccordingToSetting(modifier), label);
   }
 
-  prependYyDieAccordingToSetting(modifier) {
+  static prependYyDieAccordingToSetting(modifier) {
     const exDice = game.settings.get('qin-the-warring-states', 'exploding-dice');
     if (exDice) {
       return "1dYx +" + modifier;
@@ -262,7 +262,7 @@ export class qinActorSheet extends ActorSheet {
 
   yyRollDamage(modifier, label, damage) {
 
-    const formula = this.prependYyDieAccordingToSetting(modifier);
+    const formula = qinActorSheet.prependYyDieAccordingToSetting(modifier);
 
     console.log("Rolling formula with damage: " + formula);
     label = label ? `${label}` : '';

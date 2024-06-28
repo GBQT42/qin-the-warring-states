@@ -11,28 +11,35 @@ export default class qinCharacter extends qinActorBase {
     schema.health = new fields.SchemaField({
       value: new fields.NumberField({ ...requiredInteger, initial: 10, min: 0 }),
       max: new fields.NumberField({ ...requiredInteger, initial: 10 }),//Derived
-      steps: new fields.SchemaField({
-        normal: new fields.SchemaField({
+      steps: new fields.SchemaField([
+        new fields.SchemaField({
           health: new fields.NumberField({ ...requiredInteger, initial: 10 }),
-          malus:new fields.NumberField({ ...requiredInteger, initial: 0 })
+          malus: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+          label: new fields.StringField({ required: true, initial: "Etat normal" })
         }),
-        bruised: new fields.SchemaField({
+        new fields.SchemaField({
           health: new fields.NumberField({ ...requiredInteger, initial: 10 }),
-          malus:new fields.NumberField({ ...requiredInteger, initial: 0 })
+          malus: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+          label: new fields.StringField({ required: true, initial: "Contusions" })
         }),
-        lightWound: new fields.SchemaField({
+        new fields.SchemaField({
           health: new fields.NumberField({ ...requiredInteger, initial: 10 }),
-          malus:new fields.NumberField({ ...requiredInteger, initial: -1 })
+          malus: new fields.NumberField({ ...requiredInteger, initial: -1 }),
+          label: new fields.StringField({ required: true, initial: "Blessue légère" })
         }),
-        heavyWound: new fields.SchemaField({
+        new fields.SchemaField({
           health: new fields.NumberField({ ...requiredInteger, initial: 10 }),
-          malus:new fields.NumberField({ ...requiredInteger, initial: -3 })
+          malus: new fields.NumberField({ ...requiredInteger, initial: -3 }),
+          label: new fields.StringField({ required: true, initial: "Blessure grave" })
         }),
-        fatalWound: new fields.SchemaField({
+        new fields.SchemaField({
           health: new fields.NumberField({ ...requiredInteger, initial: 10 }),
-          malus:new fields.NumberField({ ...requiredInteger, initial: -5 })
+          malus: new fields.NumberField({ ...requiredInteger, initial: -5 }),
+          label: new fields.StringField({ required: true, initial: "Blessure fatale" })
         })
-      })
+      ]),
+      healthMalus: new fields.NumberField({ ...requiredInteger, initial: 0 }),//Derived
+      healthMalusLabel: new fields.StringField({ required:true, initial: "" })//Derived
     });
 
     schema.chi = new fields.SchemaField({
@@ -60,9 +67,22 @@ export default class qinCharacter extends qinActorBase {
       this.aspects[key].rollableModifier = this.aspects[key].value + "[" + this.aspects[key].label + "]";
     }
     this.health.max = Object.keys(this.health.steps).reduce((obj, step) => {
-      obj+= this.health.steps[step].health;
+      obj += this.health.steps[step].health;
       return obj;
     }, 0);
+
+    let healthToAssign = this.health.value;
+    const numSteps=Object.keys(this.health.steps).length;
+    for (var i = 0; i < numSteps; i++) {
+      const step = this.health.steps[numSteps-1-i];
+      healthToAssign -= step.health;
+      if (healthToAssign <= 0) {
+        this.health.healthMalus = step.malus;
+        this.health.healthMalusLabel = step.label;
+        break;
+      }
+    }
+
   }
 
   getRollData() {

@@ -28,14 +28,6 @@ Hooks.once('init', function () {
   // Add custom constants for configuration.
   CONFIG.QIN = QIN;
 
-  /**
-   * Set an initiative formula for the system
-   * @type {String}
-   */
-  CONFIG.Combat.initiative = {
-    formula: '2d12 + @aspects.dex.value + @aspects.per.value',
-    decimals: 2,
-  };
 
   // Define custom Document and DataModel classes
   CONFIG.Actor.documentClass = qinActor;
@@ -84,7 +76,7 @@ Hooks.once('init', function () {
     onChange: value => { // value is the new value of the setting
       console.log(value)
     },
-    requiresReload: false, // true if you want to prompt the user to reload
+    requiresReload: true, // true if you want to prompt the user to reload
   });
 
 
@@ -115,4 +107,14 @@ Handlebars.registerHelper('toLowerCase', function (str) {
 Hooks.once('ready', function () {
   CONFIG.Dice.types.unshift(YinYangDice);
   CONFIG.Dice.terms.y = YinYangDice;
+
+  
+  /**
+   * Set an initiative formula for the system
+   * @type {String}
+   */
+  CONFIG.Combat.initiative = {
+    formula: qinActorSheet.prependYyDieAccordingToSetting('@aspects.water.rollableModifier*1.01'),
+    decimals: 2,
+  };
 });
