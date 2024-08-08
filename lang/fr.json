@@ -45,12 +45,7 @@
       "character": "Character"
     },
     "Item": {
-      "item": "Item",
-      "feature": "Feature",
-      "spell": "Spell",
-      "skill": "Skill",
-      "semblance": "Semblance",
-      "auraFeature": "Technique d'Aura"
+      "skill": "Talent"
     }
   },
   "QIN": {
