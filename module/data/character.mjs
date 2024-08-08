@@ -25,7 +25,7 @@ export default class qinCharacter extends qinActorBase {
         new fields.SchemaField({
           health: new fields.NumberField({ ...requiredInteger, initial: 10 }),
           malus: new fields.NumberField({ ...requiredInteger, initial: -1 }),
-          label: new fields.StringField({ required: true, initial: "Blessue légère" })
+          label: new fields.StringField({ required: true, initial: "Blessure légère" })
         }),
         new fields.SchemaField({
           health: new fields.NumberField({ ...requiredInteger, initial: 10 }),

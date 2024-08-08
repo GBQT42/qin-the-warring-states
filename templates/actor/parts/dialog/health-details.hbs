@@ -1,0 +1,13 @@
+<form class="resources">
+    {{log this}}
+    {{#each object.system.health.steps as |step id|}}
+    <div class="resource">
+        <label class="resource-label">{{step.label}}</label>
+        <input type="text" name="health.steps.{{id}}.health" value="{{step.health}}" data-dtype="Number" />
+    </div>
+    {{/each}}
+</form>
+
+
+
+

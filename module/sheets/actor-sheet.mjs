@@ -163,6 +163,9 @@ export class qinActorSheet extends ActorSheet {
     // Rollable aspects.
     html.on('click', '.rollable', this._onRoll.bind(this));
 
+    // Dialog opener aspects.
+    html.on('click', '.dialogOpener', this._onDialogOpen.bind(this));
+
     // Drag events for macros.
     if (this.actor.isOwner) {
       let handler = (ev) => this._onDragStart(ev);
@@ -297,5 +300,34 @@ export class qinActorSheet extends ActorSheet {
     } else {
       return 0;
     }
+  }
+
+
+  async _onDialogOpen(event) {
+
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+
+    const template_data = { object: this.object };
+
+    const dialogContent = await renderTemplate(dataset.dialogTemplate, template_data);
+
+    Dialog.prompt({
+      title: "Title",
+      content: dialogContent,
+      callback: (html) => this.handleSubmit(html, this.object)
+    });
+  }
+
+  async handleSubmit(html, targetActor) {
+    const formElement = html[0].querySelector('form');
+    const formData = new FormDataExtended(formElement);
+    const formDataObject = formData.entries();
+
+    formDataObject.forEach(
+      async f => await targetActor.update({ ["system."+f[0]]: f[1] })
+    );
+
   }
 }

@@ -11,5 +11,6 @@ export const preloadHandlebarsTemplates = async function () {
     "systems/qin-the-warring-states/templates/actor/parts/actor-combat.hbs",
     "systems/qin-the-warring-states/templates/actor/parts/actor-taos.hbs",
     "systems/qin-the-warring-states/templates/actor/parts/actor-magic.hbs",
+    "systems/qin-the-warring-states/templates/actor/parts/dialog/health-details.hbs",
   ]);
 };
