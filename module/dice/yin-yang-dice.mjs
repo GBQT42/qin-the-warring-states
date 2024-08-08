@@ -1,4 +1,4 @@
-export default class YinYangDice extends DiceTerm {
+export default class YinYangDice extends foundry.dice.terms.DiceTerm {
     constructor(termData) {
         super(termData);
         this.faces = 10;
@@ -9,14 +9,14 @@ export default class YinYangDice extends DiceTerm {
 
     /** @inheritdoc */
     static MODIFIERS = {
-        "r": Die.prototype.reroll,
-        "rr": Die.prototype.rerollRecursive,
-        "k": Die.prototype.keep,
-        "kh": Die.prototype.keep,
-        "kl": Die.prototype.keep,
-        "d": Die.prototype.drop,
-        "dh": Die.prototype.drop,
-        "dl": Die.prototype.drop,
+        "r": foundry.dice.terms.Die.prototype.reroll,
+        "rr": foundry.dice.terms.Die.prototype.rerollRecursive,
+        "k": foundry.dice.terms.Die.prototype.keep,
+        "kh": foundry.dice.terms.Die.prototype.keep,
+        "kl": foundry.dice.terms.Die.prototype.keep,
+        "d": foundry.dice.terms.Die.prototype.drop,
+        "dh": foundry.dice.terms.Die.prototype.drop,
+        "dl": foundry.dice.terms.Die.prototype.drop,
         "x": YinYangDice.prototype.explode
     }
 

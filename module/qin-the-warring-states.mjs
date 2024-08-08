@@ -64,6 +64,12 @@ Hooks.once('init', function () {
     label: 'QIN.SheetLabels.Item',
   });
 
+  // Register YY die.
+  CONFIG.Dice.types.unshift(YinYangDice);
+  CONFIG.Dice.terms.y = YinYangDice;
+
+  
+
   // Register settings
 
   game.settings.register('qin-the-warring-states', 'exploding-dice', {
@@ -105,10 +111,6 @@ Handlebars.registerHelper('toLowerCase', function (str) {
 /* -------------------------------------------- */
 
 Hooks.once('ready', function () {
-  CONFIG.Dice.types.unshift(YinYangDice);
-  CONFIG.Dice.terms.y = YinYangDice;
-
-  
   /**
    * Set an initiative formula for the system
    * @type {String}
